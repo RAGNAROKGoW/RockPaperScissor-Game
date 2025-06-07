@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+          <meta charset="UTF-8">
+          <meta name="viewport" content="width=device-width, initial-scale=1.0">
+          <title>Rock-Paper-Scrissor_Game</title>
+          <style>
+                    *{
+                              margin: 0px;
+                              padding: 0px;
+                              font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+                              box-sizing: border-box;
+                    }
+
+                    main{
+                              width: 100vw;
+                              height: 100vh;
+                              display: flex;
+                              align-items: center;
+                              justify-content: center;
+                              gap: 20px;
+                              flex-direction: column;
+                    }
+
+                    button{
+                              padding: 10px;
+                              text-align: center;
+                    }
+          </style>
+</head>
+<body>
+          <main>
+                    <div class="moves">
+                              <button onclick="
+                                        let computerMove = Move(); 
+                                        let userMove = 'Rock';
+                                        playGame(computerMove, userMove);       
+                              ">Rock</button>
+                              <button onclick="
+                                        let computerMove2= Move(); 
+                                        let userMove2 = 'Paper';
+                                        playGame(computerMove2, userMove2);   
+                              ">Paper</button>
+                              <button onclick="
+                                        let computerMove3 = Move(); 
+                                        let userMove3 = 'Scissor';
+                                        playGame(computerMove3, userMove3);   
+                              ">Scissor</button>
+                    </div>
+                    <article>
+                    
+                    </article>
+                    <button onclick="
+                              status.wins = 0;
+                              status.losses = 0;
+                              status.ties = 0;
+                              document.querySelector('article').innerHTML =`Computer Move :  ---, Player Move : ---.<br>
+                                        RESULT => ---<br>
+                                        WINS : ${status.wins}, LOSSES : ${status.losses}, TIES : ${status.ties}`;
+//                               alert(`Game has been resetted..!!
+// WINS : ${status.wins}, LOSSES : ${status.losses}, TIES : ${status.ties}`)
+                              localStorage.removeItem('Status');
+                    ">Reset</button>
+
+          </main>
+
+          <script>
+                    console.log("Processing correctly...");
+                    let status  = JSON.parse(localStorage.getItem('Status')) ||  {
+                              wins : 0,
+                              losses : 0,
+                              ties : 0
+                    };
+                    
+                    // let status = {
+                    //           wins : 0,
+                    //           losses : 0,
+                    //           ties : 0
+                    // }
+                    console.log(status);
+
+                    function playGame(computerMove, userMove){
+                              if(computerMove === userMove){
+                                        console.log("Tie");
+                                        status.ties += 1;
+                                        console.log(status);
+                                        document.querySelector('article').innerHTML =`Computer Move : ${computerMove}, Player Move : ${userMove}.<br>
+                                                  RESULT => TIE.!!<br>
+                                                  WINS : ${status.wins}, LOSSES : ${status.losses}, TIES : ${status.ties}`;
+//                                         alert(`Computer Move : ${computerMove}, Player Move : ${userMove}.
+// RESULT => TIE.!!
+// WINS : ${status.wins}, LOSSES : ${status.losses}, TIES : ${status.ties}`);
+                                        // return 'Tie.'
+                              }
+
+                              else if(userMove  === 'Rock'){
+                                        if(computerMove === 'Paper'){
+                                                  console.log('You Lose.');
+                                                  status.losses += 1;
+                                                  document.querySelector('article').innerHTML =`Computer Move : ${computerMove}, Player Move : ${userMove}.<br>
+                                                            RESULT => YOU LOST.!!<br>
+                                                            WINS : ${status.wins}, LOSSES : ${status.losses}, TIES : ${status.ties}`;
+//                                                   alert(`Computer Move : ${computerMove}, Player Move : ${userMove}. 
+// RESULT => YOU LOST.!!
+// WINS : ${status.wins}, LOSSES : ${status.losses}, TIES : ${status.ties}`);
+                                                  // return 'You Lose.';
+                                        }
+                                        else if(computerMove === 'Scissor'){
+                                                  console.log('You Win.');
+                                                  status.wins += 1;
+                                                  document.querySelector('article').innerHTML =`Computer Move : ${computerMove}, Player Move : ${userMove}.<br>
+                                                            RESULT => YOU WON.!!<br>
+                                                            WINS : ${status.wins}, LOSSES : ${status.losses}, TIES : ${status.ties}`;
+//                                                   alert(`Computer Move : ${computerMove}, Player Move : ${userMove}.
+// RESULT => YOU WON.!!
+// WINS : ${status.wins}, LOSSES : ${status.losses}, TIES : ${status.ties}`);
+                                                  // return 'You Win.';
+                                        }
+                              }
+
+                              else if(userMove  === 'Paper'){
+                                        if(computerMove === 'Scissor'){
+                                                  console.log('You lose.');
+                                                  status.losses += 1;
+                                                  document.querySelector('article').innerHTML =`Computer Move : ${computerMove}, Player Move : ${userMove}.<br>
+                                                            RESULT => YOU LOST..!!<br>
+                                                            WINS : ${status.wins}, LOSSES : ${status.losses}, TIES : ${status.ties}`;
+//                                                   alert(`Computer Move : ${computerMove}, Player Move : ${userMove}.
+// RESULT => YOU LOST.!!
+// WINS : ${status.wins}, LOSSES : ${status.losses}, TIES : ${status.ties}`);
+                                                  // return 'You Lose.';
+                                        }
+                                        else if(computerMove === 'Rock'){
+                                                  console.log('You Win.');
+                                                  status.wins += 1;
+                                                  document.querySelector('article').innerHTML =`Computer Move : ${computerMove}, Player Move : ${userMove}.<br>
+                                                            RESULT => YOU WON.!!<br>
+                                                            WINS : ${status.wins}, LOSSES : ${status.losses}, TIES : ${status.ties}`;
+//                                                   alert(`Computer Move : ${computerMove}, Player Move : ${userMove}.
+// RESULT => YOU WON.!!
+// WINS : ${status.wins}, LOSSES : ${status.losses}, TIES : ${status.ties}`);
+                                                  // return 'You Win.';
+                                        }
+                              }
+
+                              if(userMove  === 'Scissor'){
+                                        if(computerMove === 'Rock'){
+                                                  console.log('You lose.');
+                                                  status.losses += 1;
+                                                  document.querySelector('article').innerHTML =`Computer Move : ${computerMove}, Player Move : ${userMove}.<br>
+                                                            RESULT => YOU LOST..!!<br>
+                                                            WINS : ${status.wins}, LOSSES : ${status.losses}, TIES : ${status.ties}`;
+//                                                   alert(`Computer Move : ${computerMove}, Player Move : ${userMove}.
+// RESULT => YOU LOST.!!
+// WINS : ${status.wins}, LOSSES : ${status.losses}, TIES : ${status.ties}`);
+                                                  // return 'You Lose.';
+                                        }
+                                        else if(computerMove === 'Paper'){
+                                                  console.log('You Win.');
+                                                  status.wins += 1;
+                                                  document.querySelector('article').innerHTML =`Computer Move : ${computerMove}, Player Move : ${userMove}.<br>
+                                                            RESULT => YOU WON.!!<br>
+                                                            WINS : ${status.wins}, LOSSES : ${status.losses}, TIES : ${status.ties}`;
+//                                                   alert(`Computer Move : ${computerMove}, Player Move : ${userMove}.
+// RESULT => YOU WON.!!
+// WINS : ${status.wins}, LOSSES : ${status.losses}, TIES : ${status.ties}`);
+                                                  // return 'You Win.';
+                                        }
+                              }
+                              localStorage.setItem('Status',  JSON.stringify(status));
+                    }
+
+                    function Move(){
+                              let random = Math.random();
+
+                              if(random < 1/3){
+                                        return 'Rock';
+                              }
+                              else if(random  >= 1/3 && random < 2/3) {
+                                        return 'Paper';
+                              }
+                              else{
+                                        return 'Scissor';
+                              }
+                    }
+
+                    function printStatus () {
+                              document.querySelector();
+                    }
+          </script>
+</body>
+</html>
