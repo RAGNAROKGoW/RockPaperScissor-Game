@@ -55,7 +55,8 @@ button {
           /* z-index: -1; */
 }
 
-.reset-button {
+.reset-button,
+.auto-play-button {
           background-color: whitesmoke;
           color: black;
           border-radius: 10px;

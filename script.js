@@ -11,6 +11,28 @@ let status  = JSON.parse(localStorage.getItem('Status')) ||  {
 //           ties : 0
 // }
 console.log(status);
+let autoPlayToggle = false;
+let intervalID;
+function autoPlay() {
+          if(autoPlayToggle) {
+                    document.querySelector('.auto-play-button').innerHTML = (`Auto Play`)
+                    console.log('running');
+                    clearInterval(intervalID);
+                    autoPlayToggle = false;
+          } else {
+                    document.querySelector('.auto-play-button').innerHTML = (`STOP`)
+                    intervalID = setInterval(function() {
+                              // let computerMove = Move();
+                              let cMove =Move();
+                              let uMove=Move();
+                              playGame(cMove, uMove);
+                              autoPlayToggle = true;
+                              console.log(autoPlayToggle)
+                              // console.log(cMove);
+                              // console.log(uMove)
+                    }, 1000)
+          }
+}
 
 function playGame(computerMove, userMove){
           if(computerMove === userMove){

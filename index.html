@@ -15,31 +15,37 @@
                               <button onclick="
                                         let computerMove = Move(); 
                                         let userMove = '✊';
-                                        playGame(computerMove, userMove);       
+                                        playGame(computerMove, userMove);     
                               "> <div class="img">✊</div></button>
                               <button onclick="
                                         let computerMove2= Move(); 
                                         let userMove2 = '🤚';
-                                        playGame(computerMove2, userMove2);   
+                                        playGame(computerMove2, userMove2); 
                               "><div class="img">🤚</div></button>
                               <button onclick="
                                         let computerMove3 = Move(); 
                                         let userMove3 = '✌️';
-                                        playGame(computerMove3, userMove3);   
+                                        playGame(computerMove3, userMove3);     
                               "><div class="img">✌️</div></button>
                     </div>
                     <article>
                     
                     </article>
-                    <button class="reset-button" onclick="
-                              status.wins = 0;
-                              status.losses = 0;
-                              status.ties = 0;
-                              document.querySelector('article').innerHTML =`Computer Move :  ---, Player Move : ---.<br>
-                                        RESULT => ---<br>
-                                        WINS : ${status.wins}, LOSSES : ${status.losses}, TIES : ${status.ties}`;
-                              localStorage.removeItem('Status');
-                    ">Reset Score</button>
+                    <div class="buttons">
+                              <button class="reset-button" onclick="
+                                        status.wins = 0;
+                                        status.losses = 0;
+                                        status.ties = 0;
+                                        document.querySelector('article').innerHTML =`Computer Move :  ---, Player Move : ---.<br>
+                                                  RESULT => ---<br>
+                                                  WINS : ${status.wins}, LOSSES : ${status.losses}, TIES : ${status.ties}`;
+                                        localStorage.removeItem('Status');
+                              ">Reset Score</button>
+          
+                              <button class="auto-play-button" onclick="
+                                        autoPlay();
+                              ">Auto play</button>
+                    </div>
 
           </main>
 
